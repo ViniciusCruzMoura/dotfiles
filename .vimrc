@@ -47,6 +47,9 @@ set number
 " pra ter highlight na linha
 set cursorline
 
+" pra ativar o tema
+set termguicolors
+
 " pra salvar o arquivo com ctrl+s
 map <C-s> :w<CR>
 
