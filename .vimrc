@@ -42,7 +42,8 @@ inoremap ' ''<Esc>i
 inoremap " ""<Esc>i
 
 " pra mostrar as linhas do codigo
-set number
+" set number
+set relativenumber
 
 " pra ter highlight na linha
 set cursorline
