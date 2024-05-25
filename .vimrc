@@ -29,6 +29,7 @@ set hlsearch
 set wildmenu
 set wildmode=list:longest
 set wildignore=*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx
+set path+=**
 
 set statusline=
 set statusline+=\ %F\ %M\ %Y\ %R
