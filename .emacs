@@ -3,14 +3,15 @@
 (add-to-list 'package-archives
              '("melpa-stable" . "https://stable.melpa.org/packages/") t)
 
-(global-set-key (kbd "M-x") 'smex)
+(global-set-key (kbd "M-x") 'smex) ;alt-x autocomplete
 (global-set-key (kbd "M-X") 'smex-major-mode-commands)
 (global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)
 
 (setq inhibit-startup-screen t) ;disable welcome screen
 (menu-bar-mode 0) ;disable menubar
 (tool-bar-mode 0) ;disable toolbar
-(ido-mode 1) ;crtl-x crtl-f autocomple
+(ido-mode 1) ;crtl-x crtl-f autocomplete
+(ido-everywhere 1)
 (set-default-font "Ubuntu Mono-18") ;font
 
 (custom-set-variables
