@@ -1,41 +1,25 @@
-(require 'package)
-(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
-(add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
-
-; list the packages you want
-(setq package-list '(smex))
-
-; activate all the packages (in particular autoloads)
 (package-initialize)
 
-; fetch the list of packages available
+(add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
+
 (unless package-archive-contents
   (package-refresh-contents))
+(unless (package-installed-p 'smex)
+  (package-install 'smex))
 
-; install the missing packages
-(dolist (package package-list)
-  (unless (package-installed-p package)
-    (package-install package)))
+(global-set-key (kbd "M-x") 'smex)
 
-(require 'smex) 
-(smex-initialize)
-
-(global-set-key (kbd "M-x") 'smex) ;alt-x autocomplete
-(global-set-key (kbd "M-X") 'smex-major-mode-commands)
-(global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)
-
-(setq inhibit-startup-screen t) ;disable welcome screen
-(menu-bar-mode 0) ;disable menubar
-(tool-bar-mode 0) ;disable toolbar
-(ido-mode 1) ;crtl-x crtl-f autocomplete
+(setq inhibit-startup-screen t)
+(menu-bar-mode 0)
+(tool-bar-mode 0)
+(ido-mode 1)
 (ido-everywhere 1)
 (setq ido-show-dot-for-dired t)
-(set-frame-font "Ubuntu Mono 18" nil t) ;font
+(set-frame-font "Ubuntu Mono 18" nil t)
 (scroll-bar-mode 0)
 (column-number-mode 1)
 (show-paren-mode 1)
 
-; http://stackoverflow.com/questions/13794433/how-to-disable-autosave-for-tramp-buffers-in-emacs
 (setq tramp-auto-save-directory "/tmp")
 
 (custom-set-variables
