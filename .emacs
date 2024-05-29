@@ -32,7 +32,8 @@
 (tool-bar-mode 0) ;disable toolbar
 (ido-mode 1) ;crtl-x crtl-f autocomplete
 (ido-everywhere 1)
-(set-default-font "Ubuntu Mono-18") ;font
+(setq ido-show-dot-for-dired t)
+(set-frame-font "Ubuntu Mono 18" nil t) ;font
 (scroll-bar-mode 0)
 (column-number-mode 1)
 (show-paren-mode 1)
