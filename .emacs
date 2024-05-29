@@ -1,7 +1,5 @@
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
-;; Comment/uncomment this line to enable MELPA Stable if desired.  See `package-archive-priorities`
-;; and `package-pinned-packages`. Most users will not need or want to do this.
 (add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
 
 ; list the packages you want
@@ -19,9 +17,8 @@
   (unless (package-installed-p package)
     (package-install package)))
 
-(require 'smex) ; Not needed if you use package.el
-(smex-initialize) ; Can be omitted. This might cause a (minimal) delay
-                    ; when Smex is auto-initialized on its first run.
+(require 'smex) 
+(smex-initialize)
 
 (global-set-key (kbd "M-x") 'smex) ;alt-x autocomplete
 (global-set-key (kbd "M-X") 'smex-major-mode-commands)
