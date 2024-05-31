@@ -22,6 +22,9 @@
 
 (setq tramp-auto-save-directory "/tmp")
 
+(setq display-line-numbers-type 'relative) 
+(global-display-line-numbers-mode)
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
