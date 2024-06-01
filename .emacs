@@ -21,9 +21,15 @@
 (show-paren-mode 1)
 
 (setq tramp-auto-save-directory "/tmp")
+(setq make-backup-files nil)
 
 (setq display-line-numbers-type 'relative) 
 (global-display-line-numbers-mode)
+
+(setq-default indent-tabs-mode nil)
+(setq-default tab-width 4)
+(setq c-set-style "k&r")
+(setq c-basic-offset 4)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
