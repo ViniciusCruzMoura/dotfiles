@@ -15,7 +15,12 @@ set cinoptions=l1
 set modeline
 set background=dark
 set termguicolors
-colorscheme slate
+"https://github.com/rafi/awesome-vim-colorschemes
+try
+  colorscheme gruvbox
+catch /^Vim\%((\a\+)\)\=:E185/
+  colorscheme slate
+endtry
 
 autocmd BufEnter * if &filetype == "go" | setlocal noexpandtab
 
@@ -38,3 +43,12 @@ set statusline+=\ ascii:\ %b\ hex:\ 0x%B\ row:\ %l\ col:\ %c\ percent:\ %p%%
 set laststatus=2
 
 set visualbell
+
+noremap <Up>    <Nop>
+noremap <Down>  <Nop>
+noremap <Left>  <Nop>
+noremap <Right> <Nop>
+
+"set noswapfile
+"set nobackup
+"set nowb
