@@ -52,3 +52,5 @@ noremap <Right> <Nop>
 "set noswapfile
 "set nobackup
 "set nowb
+
+let g:netrw_banner = 0
