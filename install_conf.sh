@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
-mkdir -p ~/.vim/pack/gruvbox/start/
-git clone --depth 1 https://github.com/morhetz/gruvbox.git ~/.vim/pack/gruvbox/start/gruvbox
+mkdir -p ~/.vim/pack/ale/start && git clone --depth 1 https://github.com/dense-analysis/ale.git ~/.vim/pack/ale/start/ale
 
 curl -o ~/.vimrc https://raw.githubusercontent.com/ViniciusCruzMoura/dotfiles/master/.vimrc
 curl -o ~/.tmux.conf https://raw.githubusercontent.com/ViniciusCruzMoura/dotfiles/master/.tmux.conf
