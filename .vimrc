@@ -16,6 +16,7 @@ set modeline
 set background=dark
 set termguicolors
 "https://github.com/rafi/awesome-vim-colorschemes
+"https://github.com/mcchrish/vim-no-color-collections
 try
   colorscheme gruvbox
 catch /^Vim\%((\a\+)\)\=:E185/
