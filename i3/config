@@ -1,2 +1,3 @@
 exec “setxkbmap -model pc105 -layout br,us -option grp:alt_caps_toggle”
 bindsym $mod+Return exec lxterminal -e tmux
+exec "~/.screenlayout/ideapad3r7.sh"
