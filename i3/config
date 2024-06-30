@@ -1,5 +1,5 @@
 font pango:LiberationSans-Regular 10
 bindsym $mod+Return exec lxterminal -e tmux
-exec --no-startup-id “setxkbmap -model pc105 -layout br,us -option grp:alt_caps_toggle”
-exec --no-startup-id "~/.screenlayout/ideapad3r7.sh"
-exec --no-startup-id "nitrogen --restore"
+exec_always --no-startup-id “setxkbmap -model pc105 -layout br,us -option grp:alt_caps_toggle”
+exec_always --no-startup-id "~/.screenlayout/ideapad3r7.sh"
+exec_always --no-startup-id "nitrogen --restore"
