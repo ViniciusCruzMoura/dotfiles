@@ -1,4 +1,4 @@
 font pango:LiberationSans-Regular 10
-exec “setxkbmap -model pc105 -layout br,us -option grp:alt_caps_toggle”
+exec --no-startup-id “setxkbmap -model pc105 -layout br,us -option grp:alt_caps_toggle”
 bindsym $mod+Return exec lxterminal -e tmux
-exec "~/.screenlayout/ideapad3r7.sh"
+exec --no-startup-id "~/.screenlayout/ideapad3r7.sh"
