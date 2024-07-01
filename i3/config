@@ -1,6 +1,12 @@
+workspace_layout tabbed
 font pango:LiberationSans-Regular 10
 bindsym $mod+Return exec lxterminal -e tmux
 exec_always --no-startup-id “setxkbmap -model pc105 -layout br,us -option grp:alt_caps_toggle”
 exec_always --no-startup-id "~/.screenlayout/ideapad3r7.sh"
 exec_always --no-startup-id "nitrogen --restore"
-workspace_layout tabbed
+exec --no-startup-id lxterminal
+exec --no-startup-id pavucontrol
+#exec --no-startup-id pcmanfm
+#exec --no-startup-id blueman-manager
+#exec --no-startup-id lxterminal -e nmtui
+#exec --no-startup-id xfce4-power-manager-settings
