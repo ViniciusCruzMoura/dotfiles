@@ -1,6 +1,4 @@
 #!/usr/bin/env bash
-mkdir -p ~/.vim/pack/ale/start && git clone --depth 1 https://github.com/dense-analysis/ale.git ~/.vim/pack/ale/start/ale
-
 curl -o ~/.vimrc https://raw.githubusercontent.com/ViniciusCruzMoura/dotfiles/master/.vimrc
 curl -o ~/.tmux.conf https://raw.githubusercontent.com/ViniciusCruzMoura/dotfiles/master/.tmux.conf
 
