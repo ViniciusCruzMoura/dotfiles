@@ -1,3 +1,4 @@
+bindsym --release $mod+Shift+l exec "i3lock"
 workspace_layout tabbed
 focus_follows_mouse no
 hide_edge_borders both
