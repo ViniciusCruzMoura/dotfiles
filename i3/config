@@ -1,4 +1,4 @@
-bindsym --release $mod+Shift+l exec "i3lock"
+bindsym --release $mod+Shift+l exec "i3lock --color 000000"
 workspace_layout tabbed
 focus_follows_mouse no
 hide_edge_borders both
