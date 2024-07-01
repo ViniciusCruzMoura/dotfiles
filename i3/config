@@ -1,4 +1,5 @@
 workspace_layout tabbed
+focus_follows_mouse no
 font pango:LiberationSans-Regular 10
 bindsym $mod+Return exec lxterminal -e tmux
 exec_always --no-startup-id “setxkbmap -model pc105 -layout br,us -option grp:alt_caps_toggle”
