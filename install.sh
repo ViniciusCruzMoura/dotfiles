@@ -46,6 +46,6 @@ mkdir -p ~/Downloads && \
     wget https://dbeaver.io/files/23.2.5/dbeaver-ce-23.2.5-linux.gtk.x86_64.tar.gz && \
     tar -xf dbeaver-ce-23.2.5-linux.gtk.x86_64.tar.gz && \
     rm -f dbeaver-ce-23.2.5-linux.gtk.x86_64.tar.gz && \
-    ln -s ~/Downloads/dbeaver/dbeaver /usr/local/bin/dbeaver ;
+    sudo ln -s ~/Downloads/dbeaver/dbeaver /usr/local/bin/dbeaver ;
 
 echo -e "You need config the \n1.Lxterminal, \n2.Dbeaver, \n3.Postman, \n4.Cisco, \n5.Ssh-keys, \n6.Docker, \n7.Note files, \n8.Browser links" ;
