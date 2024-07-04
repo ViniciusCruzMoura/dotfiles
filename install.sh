@@ -37,4 +37,4 @@ yes | sudo pacman -S --needed lxterminal \
 	openconnect \
 	xarchiver
 curl -o ~/.screenlayout/setup.sh --create-dirs https://raw.githubusercontent.com/ViniciusCruzMoura/dotfiles/master/.screenlayout/setup.sh
-cat ~/.config/i3/config ~/.screenlayout/setup.sh >> ~/.config/i3/config
+curl -o ~/.config/i3/config --create-dirs https://raw.githubusercontent.com/ViniciusCruzMoura/dotfiles/master/i3/config
