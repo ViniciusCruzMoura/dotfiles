@@ -193,7 +193,8 @@ workspace_layout tabbed
 focus_follows_mouse no
 hide_edge_borders both
 bindsym --release $mod+Shift+l exec "i3lock --color 000000"
-exec_always --no-startup-id “setxkbmap -model pc105 -layout br,us -option grp:alt_caps_toggle”
+#exec_always --no-startup-id “setxkbmap -model pc105 -layout br,us -option grp:alt_caps_toggle”
+exec_always --no-startup-id “setxkbmap -layout br”
 exec_always --no-startup-id "~/.screenlayout/setup.sh"
 exec_always --no-startup-id "nitrogen --restore"
 #exec --no-startup-id lxterminal
