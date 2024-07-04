@@ -40,12 +40,16 @@ sudo pacman -S --needed lxterminal \
 curl -o ~/.screenlayout/setup.sh --create-dirs https://raw.githubusercontent.com/ViniciusCruzMoura/dotfiles/master/.screenlayout/setup.sh ;
 curl -o ~/.config/i3/config --create-dirs https://raw.githubusercontent.com/ViniciusCruzMoura/dotfiles/master/i3/config ;
 curl -o ~/.i3status.conf --create-dirs https://raw.githubusercontent.com/ViniciusCruzMoura/dotfiles/master/.i3status.conf ;
-
 mkdir -p ~/Downloads && \
     cd ~/Downloads && \
     wget https://dbeaver.io/files/23.2.5/dbeaver-ce-23.2.5-linux.gtk.x86_64.tar.gz && \
     tar -xf dbeaver-ce-23.2.5-linux.gtk.x86_64.tar.gz && \
     rm -f dbeaver-ce-23.2.5-linux.gtk.x86_64.tar.gz && \
     sudo ln -s ~/Downloads/dbeaver/dbeaver /usr/local/bin/dbeaver ;
-
+mkdir -p ~/Downloads && \
+    cd ~/Downloads && \
+    wget https://dl.pstmn.io/download/latest/linux_64 && \
+    tar -xf postman-linux-x64.tar.gz && \
+    rm -f postman-linux-x64.tar.gz && \
+    sudo ln -s ~/Downloads/Postman/app/postman /usr/local/bin/postman ;
 echo -e "You need config the \n1.Lxterminal, \n2.Dbeaver, \n3.Postman, \n4.Cisco, \n5.Ssh-keys, \n6.Docker, \n7.Note files, \n8.Browser links" ;
