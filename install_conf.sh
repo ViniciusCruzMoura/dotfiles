@@ -12,8 +12,6 @@ yes | sudo pacman -S lxterminal \
 	blueman \
 	bluez \
 	bluez-utils \
-	nmcli \
-	nmtui \
 	networkmanager \
 	tlp \
 	tlp-rdw \
