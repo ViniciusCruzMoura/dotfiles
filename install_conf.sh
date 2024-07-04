@@ -29,7 +29,7 @@ yes | sudo pacman -S --needed lxterminal \
 	ttc-iosevka \
 	xfce4-screenshooter \
 	gnome-calculator \
-	transmission \
+	transmission-qt \
 	libreoffice-fresh \
 	libreoffice-fresh-pt-br \
 	rofi \
