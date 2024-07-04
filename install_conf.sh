@@ -35,5 +35,4 @@ yes | sudo pacman -S lxterminal \
 	rofi \
 	unrar \
 	openconnect \
-	xfce4-clipman \
 	xarchiver
