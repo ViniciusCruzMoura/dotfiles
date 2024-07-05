@@ -37,7 +37,8 @@ sudo pacman -S --needed lxterminal \
 	rofi \
 	unrar \
 	openconnect \
-	xarchiver ;
+	xarchiver \
+ 	udisks2 ;
 curl -o ~/.screenlayout/setup.sh --create-dirs https://raw.githubusercontent.com/ViniciusCruzMoura/dotfiles/master/.screenlayout/setup.sh ;
 rm -f ~/.config/i3/config ;
 curl -o ~/.config/i3/config --create-dirs https://raw.githubusercontent.com/ViniciusCruzMoura/dotfiles/master/i3/config ;
