@@ -49,7 +49,7 @@ mkdir -p ~/Downloads && \
 mkdir -p ~/Downloads && \
     cd ~/Downloads && \
     wget https://dl.pstmn.io/download/latest/linux_64 && \
-    tar -xf postman-linux-x64.tar.gz && \
-    rm -f postman-linux-x64.tar.gz && \
+    tar -xf linux_64 && \
+    rm -f linux_64 && \
     sudo ln -s ~/Downloads/Postman/app/postman /usr/local/bin/postman ;
 echo -e "You need config the \n1.Lxterminal, \n2.Dbeaver, \n3.Postman, \n4.Cisco, \n5.Ssh-keys, \n6.Docker, \n7.Note files, \n8.Browser links" ;
