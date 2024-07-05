@@ -9,6 +9,7 @@ sudo pacman -S --needed lxterminal \
 	gpicview \
 	pavucontrol \
 	pulseaudio \
+ 	pulseaudio-bluetooth \
 	nitrogen \
 	blueman \
 	bluez \
