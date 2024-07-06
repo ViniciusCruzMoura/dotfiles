@@ -1,10 +1,12 @@
 # dotfiles
 
 Some config files for programs I actively use.
+
+#### installation script
 ```
 wget "https://raw.githubusercontent.com/ViniciusCruzMoura/dotfiles/master/install.sh" && sh install.sh && rm install.sh
 ```
-
+#### wifi config
 ```
 iwctl
 device list
