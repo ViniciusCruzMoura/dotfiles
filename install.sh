@@ -8,8 +8,8 @@ sudo pacman -S --needed lxterminal \
 	arandr \
 	gpicview \
 	pavucontrol \
-	pulseaudio \
- 	pulseaudio-bluetooth \
+	pipewire \
+ 	pipewire-pulse \
 	nitrogen \
 	blueman \
 	bluez \
