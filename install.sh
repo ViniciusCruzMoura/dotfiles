@@ -17,7 +17,7 @@ do_install() {
         arch)
             sudo pacman -Syu ;
             sudo pacman -S --needed lxterminal \
-                arandr \
+                xorg-xrandr \
                 gpicview \
                 pavucontrol \
                 pipewire \
