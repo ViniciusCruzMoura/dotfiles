@@ -31,7 +31,6 @@ do_install() {
                 tlp-rdw \
                 smartmontools \
                 ethtool \
-                xfce4-power-manager \
                 chromium \
                 notepadqq \
                 git \
