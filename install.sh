@@ -40,7 +40,7 @@ do_install() {
                 neofetch \
                 ttf-hack \
                 ttc-iosevka \
-                xfce4-screenshooter \
+                scrot \
                 gnome-calculator \
                 transmission-qt \
                 libreoffice-fresh \
