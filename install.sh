@@ -41,7 +41,7 @@ do_install() {
                 ttf-hack \
                 ttc-iosevka \
                 scrot \
-                gnome-calculator \
+                xorg-xcalc \
                 transmission-qt \
                 libreoffice-fresh \
                 libreoffice-fresh-pt-br \
