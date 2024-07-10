@@ -48,7 +48,6 @@ do_install() {
                 rofi \
                 unrar \
                 openconnect \
-                xarchiver \
                 udisks2 ;
             ;;
 
