@@ -61,6 +61,9 @@ do_install() {
             ;;
 
         *)
+	    echo
+	    echo "ERROR: Unsupported distribution '$lsb_dist'"
+	    echo
             echo "please install arch or debian..."
             exit 0
             ;;
