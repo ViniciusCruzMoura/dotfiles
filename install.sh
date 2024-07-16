@@ -31,6 +31,7 @@ do_install() {
                 tlp-rdw \
                 smartmontools \
                 ethtool \
+		firefox \
                 chromium \
                 notepadqq \
                 git \
