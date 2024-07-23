@@ -195,12 +195,9 @@ hide_edge_borders both
 bindsym --release $mod+Shift+l exec "i3lock --color 000000"
 exec_always --no-startup-id "setxkbmap -model pc105 -layout br,us -option grp:alt_caps_toggle"
 exec_always --no-startup-id "sh ~/.screenlayout/setup.sh"
-exec_always --no-startup-id "nitrogen --restore"
-#exec --no-startup-id lxterminal
+#exec_always --no-startup-id "nitrogen --restore"
 #exec --no-startup-id pavucontrol
-#exec --no-startup-id pcmanfm
 #exec --no-startup-id blueman-manager
 #exec --no-startup-id lxterminal -e nmtui
-#exec --no-startup-id xfce4-power-manager-settings
 bindsym $mod+Return exec lxterminal
 bindsym $mod+d exec --no-startup-id rofi -show run
