@@ -32,7 +32,6 @@ do_install() {
                 smartmontools \
                 ethtool \
 		firefox \
-                chromium \
                 notepadqq \
                 git \
                 tmux \
