@@ -46,7 +46,7 @@ do_install() {
                 libreoffice-fresh \
                 libreoffice-fresh-pt-br \
                 rofi \
-                unrar \
+                unzip \
                 openconnect \
                 udisks2 ;
             ;;
