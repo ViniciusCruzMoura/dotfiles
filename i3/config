@@ -199,5 +199,5 @@ exec_always --no-startup-id "sh ~/.screenlayout/setup.sh"
 #exec --no-startup-id pavucontrol
 #exec --no-startup-id blueman-manager
 #exec --no-startup-id lxterminal -e nmtui
-bindsym $mod+Return exec lxterminal
+bindsym $mod+Return exec --no-startup-id lxterminal
 bindsym $mod+d exec --no-startup-id rofi -show run
