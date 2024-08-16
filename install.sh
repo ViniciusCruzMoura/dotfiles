@@ -39,7 +39,6 @@ do_install() {
                 ttc-iosevka \
                 scrot \
                 xorg-xcalc \
-                transmission-qt \
                 libreoffice-fresh \
                 libreoffice-fresh-pt-br \
                 rofi \
