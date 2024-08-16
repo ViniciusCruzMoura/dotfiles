@@ -18,7 +18,6 @@ do_install() {
             sudo pacman -Syu ;
             sudo pacman -S --needed lxterminal \
                 xorg-xrandr \
-                gpicview \
                 pavucontrol \
                 pipewire \
                 pipewire-pulse \
