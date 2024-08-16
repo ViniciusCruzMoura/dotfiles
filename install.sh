@@ -33,7 +33,7 @@ do_install() {
                 vim \
                 git \
                 tmux \
-                vlc \
+                mpv \
                 neofetch \
                 ttf-hack \
                 ttc-iosevka \
