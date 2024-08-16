@@ -22,7 +22,6 @@ do_install() {
                 pavucontrol \
                 pipewire \
                 pipewire-pulse \
-                nitrogen \
                 blueman \
                 bluez \
                 bluez-utils \
@@ -31,12 +30,11 @@ do_install() {
                 tlp-rdw \
                 smartmontools \
                 ethtool \
-		firefox \
-                notepadqq \
+                firefox \
+                vim \
                 git \
                 tmux \
                 vlc \
-                pcmanfm \
                 neofetch \
                 ttf-hack \
                 ttc-iosevka \
