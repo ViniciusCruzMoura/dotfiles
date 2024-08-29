@@ -33,19 +33,6 @@ set wildmode=list:longest
 set wildignore=*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx
 set path+=**
 
-"set statusline=
-"set statusline+=\ %n\                                 " Buffer number
-"set statusline+=\ %<%F%m%r%h%w\                       " File path, modified, readonly, helpfile, preview
-"set statusline+=│                                     " Separator
-"set statusline+=\ %Y\                                 " FileType
-"set statusline+=│                                     " Separator
-"set statusline+=\ %{''.(&fenc!=''?&fenc:&enc).''}     " Encoding
-"set statusline+=\ (%{&ff})                            " FileFormat (dos/unix..)
-"set statusline+=%=                                    " Right Side
-"set statusline+=\ col:\ %02v\                         " Colomn number
-"set statusline+=│                                     " Separator
-"set statusline+=\ ln:\ %02l/%L\ (%3p%%)\              " Line number / total lines, percentage of document
-"set laststatus=2
 set visualbell
 
 noremap <Up>    <Nop>
