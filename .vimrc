@@ -37,11 +37,6 @@ set scrolloff=1000
 
 set visualbell
 
-noremap <Up>    <Nop>
-noremap <Down>  <Nop>
-noremap <Left>  <Nop>
-noremap <Right> <Nop>
-
 "set noswapfile
 "set nobackup
 "set nowb
