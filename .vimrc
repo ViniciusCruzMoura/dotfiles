@@ -6,8 +6,8 @@ set expandtab
 set guioptions-=m
 set guioptions-=T
 set noesckeys
-set relativenumber
-set number
+"set relativenumber
+"set number
 set ignorecase
 set smartcase
 set incsearch
