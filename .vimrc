@@ -29,6 +29,8 @@ set showmode
 set showmatch
 set hlsearch
 set wildmenu
+"set wildmode=list:longest
+"set wildmode=longest:full,full
 set wildmode=longest:list,full
 set wildignore=*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx
 set path+=**
