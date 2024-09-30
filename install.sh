@@ -69,8 +69,11 @@ do_install() {
 do_config_vim_tmux() {
     curl -o ~/.vimrc https://raw.githubusercontent.com/ViniciusCruzMoura/dotfiles/master/.vimrc ;
     curl -o ~/.tmux.conf https://raw.githubusercontent.com/ViniciusCruzMoura/dotfiles/master/.tmux.conf ;
-    curl -o ~/.vim/colors/base16-grayscale-dark.vim --create-dirs https://raw.githubusercontent.com/chriskempson/base16-vim/master/colors/base16-grayscale-dark.vim ;
     curl -o ~/.vim/colors/base16-gruvbox-dark-hard.vim --create-dirs https://raw.githubusercontent.com/chriskempson/base16-vim/master/colors/base16-gruvbox-dark-hard.vim ;
+    curl -o ~/.vim/colors/iceberg.vim --create-dirs https://raw.githubusercontent.com/cocopon/iceberg.vim/refs/heads/master/colors/iceberg.vim ;
+    curl -o ~/.vim/colors/base16-solarized-dark.vim --create-dirs https://raw.githubusercontent.com/chriskempson/base16-vim/master/colors/base16-solarized-dark.vim ;
+    curl -o ~/.vim/colors/base16-spacemacs.vim --create-dirs https://raw.githubusercontent.com/chriskempson/base16-vim/master/colors/base16-spacemacs.vim ;
+    curl -o ~/.vim/colors/base16-darktooth.vim --create-dirs https://raw.githubusercontent.com/chriskempson/base16-vim/master/colors/base16-darktooth.vim ;
 }
 
 do_config_i3() {
