@@ -17,7 +17,7 @@ set background=dark
 set termguicolors
 "https://github.com/rafi/awesome-vim-colorschemes https://github.com/mcchrish/vim-no-color-collections
 try
-  colorscheme base16-gruvbox-dark-hard "base16-grayscale-dark
+  colorscheme base16-gruvbox-dark-hard
 catch /^Vim\%((\a\+)\)\=:E185/
   colorscheme slate
 endtry
