@@ -1,10 +1,10 @@
 [core]
-	    editor = vim
+    editor = vim
 [credential]
-        helper = store
+    helper = store
 [user]
-        name = ViniciusCruzMoura
-        email = contato.cruz.moura@gmail.com
+    name = ViniciusCruzMoura
+    email = contato.cruz.moura@gmail.com
 #[user]
-#        email = vinicius.moura@grupocard.com.br
-#        name = Vinicius Moura
+#    email = vinicius.moura@grupocard.com.br
+#    name = Vinicius Moura

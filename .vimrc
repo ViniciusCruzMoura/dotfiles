@@ -13,7 +13,6 @@ set cinoptions=l1
 set modeline
 set background=dark
 set termguicolors
-"https://github.com/rafi/awesome-vim-colorschemes https://github.com/mcchrish/vim-no-color-collections
 try
   "colorscheme base16-gruvbox-dark-hard
   colorscheme base16-darktooth
