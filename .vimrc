@@ -19,7 +19,6 @@ try
 catch /^Vim\%((\a\+)\)\=:E185/
   colorscheme slate
 endtry
-
 set nocompatible
 set nowrap
 set showcmd
@@ -31,13 +30,10 @@ set wildmode=list,full
 set wildignore=*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx
 set path+=**
 set scrolloff=1000
-
 set visualbell
-
 "set noswapfile
 "set nobackup
 "set nowb
-
 let g:netrw_banner=0
 let g:netrw_liststyle=3
 
@@ -80,6 +76,17 @@ function! GrepCWord()
     copen
 endfunction
 nnoremap çç :call GrepCWord()<CR>
+
+function! GrepCWordD()
+    let l:word = expand('<cword>')
+    silent! execute 'grep! -rn ' . l:word . ' **/*'
+    let l:quickfix_list = getqflist()
+    call sort(l:quickfix_list, {a,b -> (b.text =~ l:word . '(') ? 1 : 0})
+    call setqflist(map(l:quickfix_list, 'v:val'), 'r')
+    redraw!
+    copen
+endfunction
+nnoremap çl :call GrepCWordD()<CR>
 
 function! RunShellCommand(...)
     " Close all existing terminal buffers
