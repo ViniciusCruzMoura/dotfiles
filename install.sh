@@ -48,11 +48,36 @@ do_install() {
             ;;
 
         debian)
-            sudo apt update ;
-            sudo apt install vim \
+            sudo apt update && sudo apt full-upgrade ;
+            sudo apt install -y lxterminal \
+                x11-xserver-utils \
+                pavucontrol \
+                pipewire \
+                pipewire-pulse \
+                blueman \
+                bluez \
+                bluez-tools \
+                network-manager \
+                tlp \
+                tlp-rdw \
+                smartmontools \
+                ethtool \
+                firefox-esr \
+                vim \
+                git \
                 tmux \
+                mpv \
                 neofetch \
-                git ;
+                fonts-hack \
+                fonts-iosevka \
+                scrot \
+                x11-apps \
+                libreoffice \
+                libreoffice-l10n-pt-br \
+                rofi \
+                unzip \
+                openconnect \
+                udisks2 ;
             ;;
 
         *)
