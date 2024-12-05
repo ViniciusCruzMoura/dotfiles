@@ -37,6 +37,7 @@ set visualbell
 let g:netrw_banner=0
 let g:netrw_liststyle=3
 
+" TO SEARCH A DEFINITION
 function! GrepCWord()
     let l:word = expand('<cword>')
     silent! execute 'grep! -rn ' . l:word . ' **/*'
@@ -47,8 +48,9 @@ function! GrepCWord()
     redraw!
     copen
 endfunction
-nnoremap çl :call GrepCWord()<CR>
+nnoremap ff :call GrepCWord()<CR>
 
+" TO SEARCH A WORD
 command! -nargs=1 Grep call s:grep_pattern(<f-args>)
 function! s:grep_pattern(pattern)
     silent! execute 'grep! -nr "' . a:pattern . '" **/*'
@@ -62,6 +64,7 @@ function! s:grep_pattern(pattern)
     copen
 endfunction
 
+" TO EXECUTE BASH COMMANDS
 function! RunShellCommand(...)
     let term_buffers = filter(range(1, bufnr('$')), 'buflisted(v:val) && getbufvar(v:val, "&buftype") == "terminal"')
     for buf in term_buffers
@@ -72,3 +75,24 @@ function! RunShellCommand(...)
     execute term_cmd
 endfunction
 command! -nargs=* -complete=file Compiler call RunShellCommand(<q-args>)
+
+" TO REPLACE A WORD
+command! -nargs=* Replace call ReplaceWord(<f-args>)
+function! ReplaceWord(...)
+    let l:word = expand('<cword>')
+    let l:args = a:000
+    if len(l:args) != 1
+        echo "Replace command requires exactly 1 arguments"
+        return
+    endif
+    let l:new = l:args[0]
+    execute '%s/' . l:word . '/' . l:new . '/gc'
+"    let l:args = a:000
+"    if len(l:args) != 2
+"        echo "Replace command requires exactly 2 arguments"
+"        return
+"    endif
+"    let l:current = l:args[0]
+"    let l:new = l:args[1]
+"    execute '%s/' . l:current . '/' . l:new . '/gc'
+endfunction
