@@ -79,20 +79,18 @@ command! -nargs=* -complete=file Compiler call RunShellCommand(<q-args>)
 " TO REPLACE A WORD
 command! -nargs=* Replace call ReplaceWord(<f-args>)
 function! ReplaceWord(...)
-    let l:word = expand('<cword>')
     let l:args = a:000
-    if len(l:args) != 1
-        echo "Replace command requires exactly 1 arguments"
+    if len(l:args) == 1
+        let l:word = expand('<cword>')
+        let l:new = l:args[0]
+        execute '%s/' . l:word . '/' . l:new . '/gc'
         return
     endif
-    let l:new = l:args[0]
-    execute '%s/' . l:word . '/' . l:new . '/gc'
-"    let l:args = a:000
-"    if len(l:args) != 2
-"        echo "Replace command requires exactly 2 arguments"
-"        return
-"    endif
-"    let l:current = l:args[0]
-"    let l:new = l:args[1]
-"    execute '%s/' . l:current . '/' . l:new . '/gc'
+    if len(l:args) == 2
+        let l:current = l:args[0]
+        let l:new = l:args[1]
+        execute '%s/' . l:current . '/' . l:new . '/gc'
+        return
+    endif
+    echo "Replace command requires exactly 1 arguments"
 endfunction
