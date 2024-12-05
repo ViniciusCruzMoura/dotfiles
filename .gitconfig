@@ -8,3 +8,5 @@
 #[user]
 #    email = vinicius.moura@grupocard.com.br
 #    name = Vinicius Moura
+[diff]
+    tool = vimdiff
