@@ -94,3 +94,11 @@ function! ReplaceWord(...)
     endif
     echo "Replace command requires exactly 1 arguments"
 endfunction
+
+" TO SEARCH FOR THINGS ON THE INTERNET
+command! -nargs=1 DuckDuckGo call ReplaceWord(<f-args>)
+function! ReplaceWord(word)
+    silent! execute '!firefox -private-window "https://duckduckgo.com/?q=' . a:word . '" '
+    redraw!
+    return
+endfunction
