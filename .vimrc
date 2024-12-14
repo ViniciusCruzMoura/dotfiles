@@ -96,8 +96,8 @@ function! ReplaceWord(...)
 endfunction
 
 " TO SEARCH FOR THINGS ON THE INTERNET
-command! -nargs=1 DuckDuckGo call ReplaceWord(<f-args>)
-function! ReplaceWord(word)
+command! -nargs=1 DuckDuckGo call DuckDuckGoSearch(<f-args>)
+function! DuckDuckGoSearch(word)
     silent! execute '!firefox -private-window "https://duckduckgo.com/?q=' . a:word . '" '
     redraw!
     return
