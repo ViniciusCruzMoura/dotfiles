@@ -40,7 +40,7 @@ let g:netrw_liststyle=3
 " TO SEARCH A DEFINITION
 function! GrepCWord()
     let l:word = expand('<cword>')
-    silent! execute 'grep! -rn ' . l:word . ' **/*'
+    silent! execute 'grep! -rn ' . l:word . ' **/* *'
     let l:quickfix_list = getqflist()
     "call sort(l:quickfix_list, {a,b -> (b.text =~ l:word . '(') ? 1 : 0})
     call sort(l:quickfix_list, {a, b -> (match(a.text, '\v(\w+)\s+' . l:word) >= 0 && match(b.text, '\v(\w+)\s+' . l:word) < 0) ? -1 : (match(b.text, '\v(\w+)\s+' . l:word) >= 0 && match(a.text, '\v(\w+)\s+' . l:word) < 0) ? 1 : (match(a.text, l:word . '(') >= 0 && match(b.text, l:word . '(') < 0) ? -1 : (match(b.text, l:word . '(') >= 0 && match(a.text, l:word . '(') < 0) ? 1 : 0})
@@ -53,7 +53,7 @@ nnoremap ff :call GrepCWord()<CR>
 " TO SEARCH A WORD
 command! -nargs=1 Grep call s:grep_pattern(<f-args>)
 function! s:grep_pattern(pattern)
-    silent! execute 'grep! -nr "' . a:pattern . '" **/*'
+    silent! execute 'grep! -nr "' . a:pattern . '" **/* *'
     "silent! execute 'grep! -nr "\b[A-Za-z_][A-Za-z0-9_]* ' . a:pattern . '" **/*'
     let l:quickfix_list = getqflist()
     "call sort(l:quickfix_list, {a,b -> (b.text =~ a:pattern . '(') ? 1 : 0})
