@@ -52,12 +52,18 @@ nnoremap v{ vi{
 nnoremap v[ vi[
 
 " Automatically add closing ( { [ ' " `
- inoremap { {}<ESC>i
-" inoremap ( ()<ESC>i
- inoremap [ []<ESC>i
-" inoremap " ""<ESC>i
-" inoremap ' ''<ESC>i
-" inoremap ` ``<ESC>i
+inoremap { {}<ESC>i
+inoremap {} {}
+inoremap ( ()<ESC>i
+inoremap () ()<ESC>i
+inoremap [ []<ESC>i
+inoremap [] []<ESC>i
+inoremap " ""<ESC>i
+inoremap "" ""<ESC>i
+inoremap ' ''<ESC>i
+inoremap '' ''<ESC>i
+inoremap ` ``<ESC>i
+inoremap `` ``<ESC>i
 
 " Quick Key Mapping
 nnoremap ;0 :nnoremap ; :C make <Left><Left><Left><Left><Left><Left><Left><Left><Left>
