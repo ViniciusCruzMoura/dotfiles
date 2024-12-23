@@ -14,7 +14,6 @@ set modeline
 set background=dark
 set termguicolors
 try
-  "colorscheme base16-gruvbox-dark-hard
   colorscheme base16-darktooth
 catch /^Vim\%((\a\+)\)\=:E185/
   colorscheme slate
@@ -37,8 +36,75 @@ set visualbell
 let g:netrw_banner=0
 let g:netrw_liststyle=3
 
+" Quick Format
+nnoremap f' :silent! normal "zyiw<Esc>:let @z="'".@z."'"<CR>cw<c-r>z<Esc>b
+nnoremap f" :silent! normal "zyiw<Esc>:let @z="\"".@z."\""<CR>cw<c-r>z<Esc>b
+nnoremap f( :silent! normal "zyiw<Esc>:let @z="(".@z.")"<CR>cw<c-r>z<Esc>b
+nnoremap f[ :silent! normal "zyiw<Esc>:let @z="[".@z."]"<CR>cw<c-r>z<Esc>b
+nnoremap fd :silent! normal mpeld bhd `ph<CR>
+
+" Quick Select
+nnoremap vw viw
+nnoremap v( vi(
+nnoremap v" vi"
+nnoremap v' vi'
+nnoremap v{ vi{
+nnoremap v[ vi[
+
+" Automatically add closing ( { [ ' " `
+ inoremap { {}<ESC>i
+" inoremap ( ()<ESC>i
+ inoremap [ []<ESC>i
+" inoremap " ""<ESC>i
+" inoremap ' ''<ESC>i
+" inoremap ` ``<ESC>i
+
+" Quick Key Mapping
+nnoremap ;0 :nnoremap ; :C make <Left><Left><Left><Left><Left><Left><Left><Left><Left>
+
+" Quick Buffer Navigation
+nnoremap <C-k> :bnext<cr>
+nnoremap <C-j> :bprev<cr>
+
+" Quick Save and Quit
+nnoremap ;w :w<CR>
+nnoremap ;q :q<CR>
+
+" Paste yanked word
+noremap 0p "0p
+noremap 0P "0P
+noremap "p ""p
+
+" Resize the windows
+nnoremap + :res +5<CR>
+nnoremap _ :res -5<CR>
+
+" Commenting blocks of code.
+augroup commenting_blocks_of_code
+  autocmd!
+  autocmd FileType c,cpp,java,scala let b:comment_leader = '// '
+  autocmd FileType sh,ruby,python   let b:comment_leader = '# '
+  autocmd FileType conf,fstab       let b:comment_leader = '# '
+  autocmd FileType tex              let b:comment_leader = '% '
+  autocmd FileType mail             let b:comment_leader = '> '
+  autocmd FileType vim              let b:comment_leader = '" '
+augroup END
+noremap <silent> ;c :<C-B>silent <C-E>s/^/<C-R>=escape(b:comment_leader,'\/')<CR>/<CR>:nohlsearch<CR>
+noremap <silent> ;u :<C-B>silent <C-E>s/^\V<C-R>=escape(b:comment_leader,'\/')<CR>//e<CR>:nohlsearch<CR>
+
+" Grep and Quickfix
+"command -nargs=+ -complete=file Run :cexpr system('<args>') | copen
+nnoremap ;g :cexpr system("grep -rn '' ") \| copen <Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>
+
+" Quick Replace
+nnoremap ;r :%s/<C-r>=expand("<cword>")<CR>//gc <Left><Left><Left><Left>
+"command! Replace exec '%s/' . expand("<cword>") . '/' . input('replace with: ') . '/gc'
+
+" Quick Search on the internet
+command! Search silent! exec '!firefox -private-window "https://duckduckgo.com/?q=' . input('search: ') . '" ' | redraw!
+
 " TO SEARCH A DEFINITION
-function! GrepCWord()
+function! GrepCWordD()
     let l:word = expand('<cword>')
     silent! execute 'grep! -rn ' . l:word . ' **/* *'
     let l:quickfix_list = getqflist()
@@ -48,7 +114,7 @@ function! GrepCWord()
     redraw!
     copen
 endfunction
-nnoremap ff :call GrepCWord()<CR>
+nnoremap ff :call GrepCWordD()<CR>
 
 " TO SEARCH A WORD
 command! -nargs=1 Grep call s:grep_pattern(<f-args>)
@@ -76,9 +142,8 @@ function! RunShellCommand(...)
 endfunction
 command! -nargs=* -complete=file Compiler call RunShellCommand(<q-args>)
 
-" TO REPLACE A WORD
-command! -nargs=* Replace call ReplaceWord(<f-args>)
-function! ReplaceWord(...)
+command! -nargs=* Replace call s:quick_replace_word(<f-args>)
+function! s:quick_replace_word(...)
     let l:args = a:000
     if len(l:args) == 1
         let l:word = expand('<cword>')
@@ -92,13 +157,4 @@ function! ReplaceWord(...)
         execute '%s/' . l:current . '/' . l:new . '/gc'
         return
     endif
-    echo "Replace command requires exactly 1 arguments"
-endfunction
-
-" TO SEARCH FOR THINGS ON THE INTERNET
-command! -nargs=1 DuckDuckGo call DuckDuckGoSearch(<f-args>)
-function! DuckDuckGoSearch(word)
-    silent! execute '!firefox -private-window "https://duckduckgo.com/?q=' . a:word . '" '
-    redraw!
-    return
 endfunction
