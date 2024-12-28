@@ -30,6 +30,7 @@ set wildignore=*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx
 set path+=**
 set scrolloff=1000
 set visualbell
+set mouse=i
 "set noswapfile
 "set nobackup
 "set nowb
@@ -37,13 +38,13 @@ let g:netrw_banner=0
 let g:netrw_liststyle=3
 
 " Quick Format
-nnoremap f' :silent! normal "zyiw<Esc>:let @z="'".@z."'"<CR>cw<c-r>z<Esc>b
-nnoremap f" :silent! normal "zyiw<Esc>:let @z="\"".@z."\""<CR>cw<c-r>z<Esc>b
-nnoremap f( :silent! normal "zyiw<Esc>:let @z="(".@z.")"<CR>cw<c-r>z<Esc>b
-nnoremap f[ :silent! normal "zyiw<Esc>:let @z="[".@z."]"<CR>cw<c-r>z<Esc>b
-nnoremap fd :silent! normal mpeld bhd `ph<CR>
+vnoremap ' c'<C-r>"'<Esc>
+vnoremap " c"<C-r>""<Esc>
+vnoremap ( c(<C-r>")<Esc>
+vnoremap [ c[<C-r>"]<Esc>
 
 " Quick Select
+nnoremap ve viw
 nnoremap vw viw
 nnoremap v( vi(
 nnoremap v" vi"
@@ -51,22 +52,22 @@ nnoremap v' vi'
 nnoremap v{ vi{
 nnoremap v[ vi[
 
-" Automatically add closing ( { [ ' " `
-inoremap { {}<ESC>i
-inoremap {} {}
-inoremap ( ()<ESC>i
-inoremap () ()<ESC>i
-inoremap [ []<ESC>i
-inoremap [] []<ESC>i
-inoremap " ""<ESC>i
-inoremap "" ""<ESC>i
-inoremap ' ''<ESC>i
-inoremap '' ''<ESC>i
-inoremap ` ``<ESC>i
-inoremap `` ``<ESC>i
+" Automatically add closing ( { [
+function! ConditionalPairMap(open, close)
+  let line = getline('.')
+  let col = col('.')
+  if col < col('$') || stridx(line, a:close, col + 1) != -1
+    return a:open
+  else
+    return a:open . a:close . repeat("\<left>", len(a:close))
+  endif
+endf
+inoremap <expr> ( ConditionalPairMap('(', ')')
+inoremap <expr> { ConditionalPairMap('{', '}')
+inoremap <expr> [ ConditionalPairMap('[', ']')
 
 " Quick Key Mapping
-nnoremap ;0 :nnoremap ; :C make <Left><Left><Left><Left><Left><Left><Left><Left><Left>
+nnoremap ;0 :nnoremap ; :term make <Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>
 
 " Quick Buffer Navigation
 nnoremap <C-k> :bnext<cr>
@@ -100,7 +101,7 @@ noremap <silent> ;u :<C-B>silent <C-E>s/^\V<C-R>=escape(b:comment_leader,'\/')<C
 
 " Grep and Quickfix
 "command -nargs=+ -complete=file Run :cexpr system('<args>') | copen
-nnoremap ;g :cexpr system("grep -rn '' ") \| copen <Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>
+nnoremap ;g :cexpr system("grep -rn '<C-r>=expand("<cword>")<CR>' ") \| copen <Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>
 
 " Quick Replace
 nnoremap ;r :%s/<C-r>=expand("<cword>")<CR>//gc <Left><Left><Left><Left>
@@ -110,22 +111,22 @@ nnoremap ;r :%s/<C-r>=expand("<cword>")<CR>//gc <Left><Left><Left><Left>
 command! Search silent! exec '!firefox -private-window "https://duckduckgo.com/?q=' . input('search: ') . '" ' | redraw!
 
 " TO SEARCH A DEFINITION
-function! GrepCWordD()
-    let l:word = expand('<cword>')
-    silent! execute 'grep! -rn ' . l:word . ' **/* *'
-    let l:quickfix_list = getqflist()
-    "call sort(l:quickfix_list, {a,b -> (b.text =~ l:word . '(') ? 1 : 0})
-    call sort(l:quickfix_list, {a, b -> (match(a.text, '\v(\w+)\s+' . l:word) >= 0 && match(b.text, '\v(\w+)\s+' . l:word) < 0) ? -1 : (match(b.text, '\v(\w+)\s+' . l:word) >= 0 && match(a.text, '\v(\w+)\s+' . l:word) < 0) ? 1 : (match(a.text, l:word . '(') >= 0 && match(b.text, l:word . '(') < 0) ? -1 : (match(b.text, l:word . '(') >= 0 && match(a.text, l:word . '(') < 0) ? 1 : 0})
-    call setqflist(map(l:quickfix_list, 'v:val'), 'r')
-    redraw!
-    copen
-endfunction
-nnoremap ff :call GrepCWordD()<CR>
+" function! GrepCWordD()
+"     let l:word = expand('<cword>')
+"     silent! execute 'grep! -rn ' . l:word . ' **/*'
+"     let l:quickfix_list = getqflist()
+"     "call sort(l:quickfix_list, {a,b -> (b.text =~ l:word . '(') ? 1 : 0})
+"     call sort(l:quickfix_list, {a, b -> (match(a.text, '\v(\w+)\s+' . l:word) >= 0 && match(b.text, '\v(\w+)\s+' . l:word) < 0) ? -1 : (match(b.text, '\v(\w+)\s+' . l:word) >= 0 && match(a.text, '\v(\w+)\s+' . l:word) < 0) ? 1 : (match(a.text, l:word . '(') >= 0 && match(b.text, l:word . '(') < 0) ? -1 : (match(b.text, l:word . '(') >= 0 && match(a.text, l:word . '(') < 0) ? 1 : 0})
+"     call setqflist(map(l:quickfix_list, 'v:val'), 'r')
+"     redraw!
+"     copen
+" endfunction
+"nnoremap ff :call GrepCWordD()<CR>
 
 " TO SEARCH A WORD
 command! -nargs=1 Grep call s:grep_pattern(<f-args>)
 function! s:grep_pattern(pattern)
-    silent! execute 'grep! -nr "' . a:pattern . '" **/* *'
+    silent! execute 'grep! -nr "' . a:pattern . '" **/*'
     "silent! execute 'grep! -nr "\b[A-Za-z_][A-Za-z0-9_]* ' . a:pattern . '" **/*'
     let l:quickfix_list = getqflist()
     "call sort(l:quickfix_list, {a,b -> (b.text =~ a:pattern . '(') ? 1 : 0})
@@ -136,7 +137,6 @@ function! s:grep_pattern(pattern)
     copen
 endfunction
 
-" TO EXECUTE BASH COMMANDS
 function! RunShellCommand(...)
     let term_buffers = filter(range(1, bufnr('$')), 'buflisted(v:val) && getbufvar(v:val, "&buftype") == "terminal"')
     for buf in term_buffers
@@ -148,19 +148,19 @@ function! RunShellCommand(...)
 endfunction
 command! -nargs=* -complete=file Compiler call RunShellCommand(<q-args>)
 
-command! -nargs=* Replace call s:quick_replace_word(<f-args>)
-function! s:quick_replace_word(...)
-    let l:args = a:000
-    if len(l:args) == 1
-        let l:word = expand('<cword>')
-        let l:new = l:args[0]
-        execute '%s/' . l:word . '/' . l:new . '/gc'
-        return
-    endif
-    if len(l:args) == 2
-        let l:current = l:args[0]
-        let l:new = l:args[1]
-        execute '%s/' . l:current . '/' . l:new . '/gc'
-        return
-    endif
-endfunction
+" command! -nargs=* Replace call s:quick_replace_word(<f-args>)
+" function! s:quick_replace_word(...)
+"     let l:args = a:000
+"     if len(l:args) == 1
+"         let l:word = expand('<cword>')
+"         let l:new = l:args[0]
+"         execute '%s/' . l:word . '/' . l:new . '/gc'
+"         return
+"     endif
+"     if len(l:args) == 2
+"         let l:current = l:args[0]
+"         let l:new = l:args[1]
+"         execute '%s/' . l:current . '/' . l:new . '/gc'
+"         return
+"     endif
+" endfunction
