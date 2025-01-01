@@ -36,6 +36,10 @@ set mouse=i
 "set nowb
 let g:netrw_banner=0
 let g:netrw_liststyle=3
+let g:netrw_winsize = 30
+
+" https://vim.fandom.com/wiki/Copy_and_paste_between_sessions_using_a_temporary_file
+" https://vim.fandom.com/wiki/Copy_and_paste_between_Vim_instances
 
 " Quick Format
 vnoremap ' c'<C-r>"'<Esc>
@@ -73,10 +77,6 @@ nnoremap ;0 :nnoremap ; :term make <Left><Left><Left><Left><Left><Left><Left><Le
 nnoremap <C-k> :bnext<cr>
 nnoremap <C-j> :bprev<cr>
 
-" Quick Save and Quit
-nnoremap ;w :w<CR>
-nnoremap ;q :q<CR>
-
 " Paste yanked word
 noremap 0p "0p
 noremap 0P "0P
@@ -101,7 +101,8 @@ noremap <silent> ;u :<C-B>silent <C-E>s/^\V<C-R>=escape(b:comment_leader,'\/')<C
 
 " Grep and Quickfix
 "command -nargs=+ -complete=file Run :cexpr system('<args>') | copen
-nnoremap ;g :cexpr system("grep -rn '<C-r>=expand("<cword>")<CR>' ") \| copen <Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>
+nnoremap ;g :cgetexpr system("grep -rn --include=*.{c,h,py,java,js} -s -e '<C-r>=expand("<cword>")<CR>' ") \
+            \| copen <Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>
 
 " Quick Replace
 nnoremap ;r :%s/<C-r>=expand("<cword>")<CR>//gc <Left><Left><Left><Left>
