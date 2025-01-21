@@ -38,6 +38,8 @@ let g:netrw_banner=0
 let g:netrw_liststyle=3
 let g:netrw_winsize = 30
 
+" :execute '!git blame --date short --color-by-age -L' .(line('.')-5). ',' .(line('.')+5). ' %'
+" !git log --pretty=format: --name-only | sort | uniq -c | sort -rg | head -10
 " https://vim.fandom.com/wiki/Copy_and_paste_between_sessions_using_a_temporary_file
 " https://vim.fandom.com/wiki/Copy_and_paste_between_Vim_instances
 
@@ -111,27 +113,11 @@ nnoremap ;r :%s/<C-r>=expand("<cword>")<CR>//gc <Left><Left><Left><Left>
 " Quick Search on the internet
 command! Search silent! exec '!firefox -private-window "https://duckduckgo.com/?q=' . input('search: ') . '" ' | redraw!
 
-" TO SEARCH A DEFINITION
-" function! GrepCWordD()
-"     let l:word = expand('<cword>')
-"     silent! execute 'grep! -rn ' . l:word . ' **/*'
-"     let l:quickfix_list = getqflist()
-"     "call sort(l:quickfix_list, {a,b -> (b.text =~ l:word . '(') ? 1 : 0})
-"     call sort(l:quickfix_list, {a, b -> (match(a.text, '\v(\w+)\s+' . l:word) >= 0 && match(b.text, '\v(\w+)\s+' . l:word) < 0) ? -1 : (match(b.text, '\v(\w+)\s+' . l:word) >= 0 && match(a.text, '\v(\w+)\s+' . l:word) < 0) ? 1 : (match(a.text, l:word . '(') >= 0 && match(b.text, l:word . '(') < 0) ? -1 : (match(b.text, l:word . '(') >= 0 && match(a.text, l:word . '(') < 0) ? 1 : 0})
-"     call setqflist(map(l:quickfix_list, 'v:val'), 'r')
-"     redraw!
-"     copen
-" endfunction
-"nnoremap ff :call GrepCWordD()<CR>
-
 " TO SEARCH A WORD
 command! -nargs=1 Grep call s:grep_pattern(<f-args>)
 function! s:grep_pattern(pattern)
     silent! execute 'grep! -nr "' . a:pattern . '" **/*'
-    "silent! execute 'grep! -nr "\b[A-Za-z_][A-Za-z0-9_]* ' . a:pattern . '" **/*'
     let l:quickfix_list = getqflist()
-    "call sort(l:quickfix_list, {a,b -> (b.text =~ a:pattern . '(') ? 1 : 0})
-    "call sort(l:quickfix_list, {a,b -> (b.text =~ '\v(\w+)\s+' . a:pattern) ? 1 : 0})
     call sort(l:quickfix_list, {a, b -> (match(a.text, '\v(\w+)\s+' . a:pattern) >= 0 && match(b.text, '\v(\w+)\s+' . a:pattern) < 0) ? -1 : (match(b.text, '\v(\w+)\s+' . a:pattern) >= 0 && match(a.text, '\v(\w+)\s+' . a:pattern) < 0) ? 1 : (match(a.text, a:pattern . '(') >= 0 && match(b.text, a:pattern . '(') < 0) ? -1 : (match(b.text, a:pattern . '(') >= 0 && match(a.text, a:pattern . '(') < 0) ? 1 : 0})
     call setqflist(map(l:quickfix_list, 'v:val'), 'r')
     redraw!
@@ -148,20 +134,3 @@ function! RunShellCommand(...)
     execute term_cmd
 endfunction
 command! -nargs=* -complete=file Compiler call RunShellCommand(<q-args>)
-
-" command! -nargs=* Replace call s:quick_replace_word(<f-args>)
-" function! s:quick_replace_word(...)
-"     let l:args = a:000
-"     if len(l:args) == 1
-"         let l:word = expand('<cword>')
-"         let l:new = l:args[0]
-"         execute '%s/' . l:word . '/' . l:new . '/gc'
-"         return
-"     endif
-"     if len(l:args) == 2
-"         let l:current = l:args[0]
-"         let l:new = l:args[1]
-"         execute '%s/' . l:current . '/' . l:new . '/gc'
-"         return
-"     endif
-" endfunction
