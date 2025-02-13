@@ -14,6 +14,7 @@ alias ll='ls -lrtaF --color=auto'
 alias ls='ls -rtF --color=auto'
 alias vi=vim
 alias grepp='grep --color=auto -rn --include=*.{c,h,py,java,js} -s -e'
+alias ip='ip -color=auto'
 PATH=$PATH:~/workspaces/probe/commands
 PATH=$PATH:~/workspaces/opt/node-v22.12.0-linux-x64/bin/
 PATH=$PATH:~/workspaces/opt/jdk-17.0.2/bin/
