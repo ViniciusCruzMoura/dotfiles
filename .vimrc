@@ -31,12 +31,14 @@ set path+=**
 set scrolloff=1000
 set visualbell
 set mouse=i
+set splitright
+set splitbelow
 "set noswapfile
 "set nobackup
 "set nowb
 let g:netrw_banner=0
 let g:netrw_liststyle=3
-let g:netrw_winsize = 30
+let g:netrw_winsize = 25
 
 " :execute '!git blame --date short --color-by-age -L' .(line('.')-5). ',' .(line('.')+5). ' %'
 " !git log --pretty=format: --name-only | sort | uniq -c | sort -rg | head -10
