@@ -27,7 +27,7 @@ set hlsearch
 set wildmenu
 set wildmode=list,full
 set wildignore=*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx
-set path+=**
+set path=$PWD/**
 set scrolloff=1000
 set visualbell
 set mouse=i
@@ -90,6 +90,9 @@ noremap "p ""p
 nnoremap + :res +5<CR>
 nnoremap _ :res -5<CR>
 
+" Turn terminal to normal mode with escape
+tnoremap <Esc> <C-\><C-n>
+
 " Commenting blocks of code.
 augroup commenting_blocks_of_code
   autocmd!
@@ -110,6 +113,7 @@ nnoremap ;g :cgetexpr system("grep -rn --include=*.{c,h,py,java,js} -s -e '<C-r>
 
 " Quick Replace
 nnoremap ;r :%s/<C-r>=expand("<cword>")<CR>//gc <Left><Left><Left><Left>
+nnoremap ;R :s/<C-r>=expand("<cword>")<CR>//gc <Left><Left><Left><Left>
 "command! Replace exec '%s/' . expand("<cword>") . '/' . input('replace with: ') . '/gc'
 
 " Quick Search on the internet
