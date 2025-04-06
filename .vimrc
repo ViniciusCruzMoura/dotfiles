@@ -14,7 +14,7 @@ set modeline
 set background=dark
 set termguicolors
 try
-  colorscheme base16-darktooth
+  colorscheme base16-solarized-dark
 catch /^Vim\%((\a\+)\)\=:E185/
   colorscheme slate
 endtry
@@ -40,10 +40,15 @@ let g:netrw_banner=0
 let g:netrw_liststyle=3
 let g:netrw_winsize = 25
 
+command! GitBlame execute '!git blame --date short --color-by-age -L' .(line('.')-0). ',' .(line('.')+10). ' %'
 " :execute '!git blame --date short --color-by-age -L' .(line('.')-5). ',' .(line('.')+5). ' %'
 " !git log --pretty=format: --name-only | sort | uniq -c | sort -rg | head -10
 " https://vim.fandom.com/wiki/Copy_and_paste_between_sessions_using_a_temporary_file
 " https://vim.fandom.com/wiki/Copy_and_paste_between_Vim_instances
+vmap <silent> ,y y:new<CR>:call setline(1,getregtype())<CR>o<Esc>P:wq! /tmp/reg.txt<CR>
+nmap <silent> ,y :new<CR>:call setline(1,getregtype())<CR>o<Esc>P:wq! /tmp/reg.txt<CR>
+map <silent> ,p :sview /tmp/reg.txt<CR>"zdddG:q!<CR>:call setreg('"', @", @z)<CR>p
+map <silent> ,P :sview /tmp/reg.txt<CR>"zdddG:q!<CR>:call setreg('"', @", @z)<CR>P
 
 " Quick Format
 vnoremap ' c'<C-r>"'<Esc>
@@ -77,18 +82,10 @@ inoremap <expr> [ ConditionalPairMap('[', ']')
 " Quick Key Mapping
 nnoremap ;0 :nnoremap ; :term make <Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>
 
-" Quick Buffer Navigation
-nnoremap <C-k> :bnext<cr>
-nnoremap <C-j> :bprev<cr>
-
 " Paste yanked word
 noremap 0p "0p
 noremap 0P "0P
 noremap "p ""p
-
-" Resize the windows
-nnoremap + :res +5<CR>
-nnoremap _ :res -5<CR>
 
 " Turn terminal to normal mode with escape
 tnoremap <Esc> <C-\><C-n>
@@ -110,6 +107,7 @@ noremap <silent> ;u :<C-B>silent <C-E>s/^\V<C-R>=escape(b:comment_leader,'\/')<C
 "command -nargs=+ -complete=file Run :cexpr system('<args>') | copen
 nnoremap ;g :cgetexpr system("grep -rn --include=*.{c,h,py,java,js} -s -e '<C-r>=expand("<cword>")<CR>' ") \
             \| copen <Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>
+command GREP :execute 'vimgrep /'.expand('<cword>').'/gj '.expand('%') | copen
 
 " Quick Replace
 nnoremap ;r :%s/<C-r>=expand("<cword>")<CR>//gc <Left><Left><Left><Left>
@@ -119,24 +117,5 @@ nnoremap ;R :s/<C-r>=expand("<cword>")<CR>//gc <Left><Left><Left><Left>
 " Quick Search on the internet
 command! Search silent! exec '!firefox -private-window "https://duckduckgo.com/?q=' . input('search: ') . '" ' | redraw!
 
-" TO SEARCH A WORD
-command! -nargs=1 Grep call s:grep_pattern(<f-args>)
-function! s:grep_pattern(pattern)
-    silent! execute 'grep! -nr "' . a:pattern . '" **/*'
-    let l:quickfix_list = getqflist()
-    call sort(l:quickfix_list, {a, b -> (match(a.text, '\v(\w+)\s+' . a:pattern) >= 0 && match(b.text, '\v(\w+)\s+' . a:pattern) < 0) ? -1 : (match(b.text, '\v(\w+)\s+' . a:pattern) >= 0 && match(a.text, '\v(\w+)\s+' . a:pattern) < 0) ? 1 : (match(a.text, a:pattern . '(') >= 0 && match(b.text, a:pattern . '(') < 0) ? -1 : (match(b.text, a:pattern . '(') >= 0 && match(a.text, a:pattern . '(') < 0) ? 1 : 0})
-    call setqflist(map(l:quickfix_list, 'v:val'), 'r')
-    redraw!
-    copen
-endfunction
-
-function! RunShellCommand(...)
-    let term_buffers = filter(range(1, bufnr('$')), 'buflisted(v:val) && getbufvar(v:val, "&buftype") == "terminal"')
-    for buf in term_buffers
-        exec 'bdelete ' . buf
-    endfor
-    let cmd = join(a:000, ' ')
-    let term_cmd = 'term sh -c "' . cmd . '"'
-    execute term_cmd
-endfunction
-command! -nargs=* -complete=file Compiler call RunShellCommand(<q-args>)
+" Json Formater with Python Script
+command! Jsonf :execute '%!python -c "import json,sys,collections,re; sys.stdout.write(re.sub(r\"\\\u[0-9a-f]{4}\", lambda m:m.group().decode(\"unicode_escape\").encode(\"utf-8\"),json.dumps(json.load(sys.stdin, object_pairs_hook=collections.OrderedDict), indent=2)))"'
