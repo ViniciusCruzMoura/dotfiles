@@ -46,7 +46,8 @@ do_install() {
                 unzip \
                 openconnect \
                 udisks2 \
-		udiskie ;
+		udiskie \
+  		brightnessctl ;
             ;;
 
         debian)
@@ -79,7 +80,8 @@ do_install() {
                 rofi \
                 unzip \
                 openconnect \
-                udisks2 ;
+                udisks2 \
+		brightnessctl ;
             ;;
 
         *)
