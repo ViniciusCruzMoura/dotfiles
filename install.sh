@@ -37,6 +37,7 @@ do_install() {
                 neofetch \
                 ttf-hack \
                 ttc-iosevka \
+		noto-fonts \
                 scrot \
                 xorg-xcalc \
                 libreoffice-fresh \
@@ -44,7 +45,9 @@ do_install() {
                 rofi \
                 unzip \
                 openconnect \
-                udisks2 ;
+                udisks2 \
+		udiskie \
+  		brightnessctl ;
             ;;
 
         debian)
@@ -77,7 +80,8 @@ do_install() {
                 rofi \
                 unzip \
                 openconnect \
-                udisks2 ;
+                udisks2 \
+		brightnessctl ;
             ;;
 
         *)
