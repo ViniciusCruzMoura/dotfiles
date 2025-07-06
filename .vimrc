@@ -37,12 +37,16 @@ set splitbelow
 "set nobackup
 "set nowb
 let g:netrw_banner=0
-let g:netrw_liststyle=3
-let g:netrw_winsize = 25
+" let g:netrw_liststyle=3
+" let g:netrw_winsize = 25
+set omnifunc=syntaxcomplete#Complete
+
+command! Ctags silent! execute '!ctags -a -R --exclude=.git .' | redraw!
 
 command! GitBlame execute '!git blame --date short --color-by-age -L' .(line('.')-0). ',' .(line('.')+10). ' %'
 " :execute '!git blame --date short --color-by-age -L' .(line('.')-5). ',' .(line('.')+5). ' %'
 " !git log --pretty=format: --name-only | sort | uniq -c | sort -rg | head -10
+
 " https://vim.fandom.com/wiki/Copy_and_paste_between_sessions_using_a_temporary_file
 " https://vim.fandom.com/wiki/Copy_and_paste_between_Vim_instances
 vmap <silent> ,y y:new<CR>:call setline(1,getregtype())<CR>o<Esc>P:wq! /tmp/reg.txt<CR>
@@ -104,18 +108,24 @@ noremap <silent> ;c :<C-B>silent <C-E>s/^/<C-R>=escape(b:comment_leader,'\/')<CR
 noremap <silent> ;u :<C-B>silent <C-E>s/^\V<C-R>=escape(b:comment_leader,'\/')<CR>//e<CR>:nohlsearch<CR>
 
 " Grep and Quickfix
-"command -nargs=+ -complete=file Run :cexpr system('<args>') | copen
-nnoremap ;g :cgetexpr system("grep -rn --include=*.{c,h,py,java,js} -s -e '<C-r>=expand("<cword>")<CR>' ") \
+" command -nargs=+ -complete=file Run :cexpr system('<args>') | copen
+nnoremap ;g :cgetexpr system("grep -rn --include=*.{c,h,cpp,py,java,js} -s -e '<C-r>=expand("<cword>")<CR>' ") \
             \| copen <Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>
-command GREP :execute 'vimgrep /'.expand('<cword>').'/gj '.expand('%') | copen
+" command GREP :execute 'vimgrep /'.expand('<cword>').'/gj '.expand('%') | copen
 
 " Quick Replace
 nnoremap ;r :%s/<C-r>=expand("<cword>")<CR>//gc <Left><Left><Left><Left>
 nnoremap ;R :s/<C-r>=expand("<cword>")<CR>//gc <Left><Left><Left><Left>
-"command! Replace exec '%s/' . expand("<cword>") . '/' . input('replace with: ') . '/gc'
+" command! Replace exec '%s/' . expand("<cword>") . '/' . input('replace with: ') . '/gc'
 
 " Quick Search on the internet
 command! Search silent! exec '!firefox -private-window "https://duckduckgo.com/?q=' . input('search: ') . '" ' | redraw!
 
 " Json Formater with Python Script
 command! Jsonf :execute '%!python -c "import json,sys,collections,re; sys.stdout.write(re.sub(r\"\\\u[0-9a-f]{4}\", lambda m:m.group().decode(\"unicode_escape\").encode(\"utf-8\"),json.dumps(json.load(sys.stdin, object_pairs_hook=collections.OrderedDict), indent=2)))"'
+
+" Activate the Mouse Support for NetRW
+au FileType netrw :set mouse=n
+au FileType netrw au BufEnter <buffer> :set mouse=n
+au FileType netrw au BufLeave <buffer> :set mouse=i
+" au FileType netrw nmap <buffer> <LeftMouse> <LeftMouse> <CR>
