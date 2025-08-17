@@ -14,7 +14,7 @@ set modeline
 set background=dark
 set termguicolors
 try
-  colorscheme base16-solarized-dark
+  colorscheme habamax
 catch /^Vim\%((\a\+)\)\=:E185/
   colorscheme slate
 endtry
@@ -40,6 +40,10 @@ let g:netrw_banner=0
 " let g:netrw_liststyle=3
 " let g:netrw_winsize = 25
 set omnifunc=syntaxcomplete#Complete
+
+if $TERM =~ 'tmux'
+    set ttymouse=xterm2
+endif
 
 command! Ctags silent! execute '!ctags -a -R --exclude=.git .' | redraw!
 
