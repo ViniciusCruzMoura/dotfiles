@@ -30,6 +30,7 @@ set wildignore=*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx
 set path=$PWD/**
 set scrolloff=1000
 set visualbell
+set belloff=all
 set mouse=i
 set splitright
 set splitbelow
