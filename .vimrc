@@ -33,6 +33,7 @@ set visualbell
 set mouse=inv
 set splitright
 set splitbelow
+set belloff=all
 "set noswapfile
 "set nobackup
 "set nowb
