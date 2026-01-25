@@ -28,17 +28,19 @@ set wildmenu
 set wildmode=list,full
 set wildignore=*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx
 set path=$PWD/**
-set scrolloff=1000
+" set scrolloff=1000
 set visualbell
-set mouse=i
+set mouse=inv
 set splitright
 set splitbelow
 "set noswapfile
 "set nobackup
 "set nowb
 let g:netrw_banner=0
-" let g:netrw_liststyle=3
 " let g:netrw_winsize = 25
+let g:netrw_liststyle=1
+let g:netrw_sort_by='exten'
+let g:netrw_sizestyle= "h"
 set omnifunc=syntaxcomplete#Complete
 
 if $TERM =~ 'tmux'
@@ -131,5 +133,29 @@ command! Jsonf :execute '%!python -c "import json,sys,collections,re; sys.stdout
 " Activate the Mouse Support for NetRW
 au FileType netrw :set mouse=n
 au FileType netrw au BufEnter <buffer> :set mouse=n
-au FileType netrw au BufLeave <buffer> :set mouse=i
+au FileType netrw au BufLeave <buffer> :set mouse=inv
 " au FileType netrw nmap <buffer> <LeftMouse> <LeftMouse> <CR>
+
+" https://stackoverflow.com/questions/736701/class-function-names-highlighting-in-vim
+function! g:Highlight()
+    let list = taglist('.*')
+    for item in list
+        "echo item.name item.kind
+        let kind = item.kind
+        "if kind == 'f' || kind == 'c' || kind == 'm'
+            let name = item.name
+            exec 'syntax keyword Identifier '.name
+        "endif
+        exec 'highlight Identifier gui=bold guifg=yellowgreen'
+    endfor
+endfunction
+function! g:HighlightRegex()
+    exec 'syn match    cCustomParen    "?=(" contains=cParen,cCppParen'
+    exec 'syn match    cCustomFunc     "\w\+\s*(\@=" contains=cCustomParen'
+    exec 'syn match    cCustomScope    "::"'
+    exec 'syn match    cCustomClass    "\w\+\s*::" contains=cCustomScope'
+    exec 'hi def cCustomFunc  gui=bold guifg=yellowgreen'
+    exec 'hi def link cCustomClass Function'
+endfunction
+"autocmd BufReadPost * call Highlight()
+autocmd BufReadPost * call timer_start(0, {-> g:HighlightRegex()})
