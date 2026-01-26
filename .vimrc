@@ -143,10 +143,10 @@ function! g:Highlight()
     for item in list
         "echo item.name item.kind
         let kind = item.kind
-        "if kind == 'f' || kind == 'c' || kind == 'm'
+        if kind == 'f' || kind == 'c' || kind == 's' "|| kind == 'm'
             let name = item.name
             exec 'syntax keyword Identifier '.name
-        "endif
+        endif
         exec 'highlight Identifier gui=bold guifg=yellowgreen'
     endfor
 endfunction
