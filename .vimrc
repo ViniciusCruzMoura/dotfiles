@@ -139,16 +139,23 @@ au FileType netrw au BufLeave <buffer> :set mouse=inv
 
 " https://stackoverflow.com/questions/736701/class-function-names-highlighting-in-vim
 function! g:Highlight()
+    if exists("b:highlight_done") && b:highlight_done
+        return
+    endif
+    let b:highlight_done = 1
     let list = taglist('.*')
     for item in list
-        "echo item.name item.kind
-        let kind = item.kind
-        if kind == 'f' || kind == 'c' || kind == 's' "|| kind == 'm'
-            let name = item.name
-            exec 'syntax keyword Identifier '.name
-        endif
-        exec 'highlight Identifier gui=bold guifg=yellowgreen'
+        try
+            let kind = item.kind
+            if kind == 'f' || kind == 'c' || kind == 's' "|| kind == 'm'
+                let name = item.name
+                exec 'syntax keyword Identifier ' . name
+            endif
+        catch
+            echo "Erro ocorreu ao processar a tag " . item.name item.kind
+        endtry
     endfor
+    exec 'highlight Identifier gui=bold guifg=yellowgreen'
 endfunction
 function! g:HighlightRegex()
     exec 'syn match    cCustomParen    "?=(" contains=cParen,cCppParen'
@@ -158,5 +165,5 @@ function! g:HighlightRegex()
     exec 'hi def cCustomFunc  gui=bold guifg=yellowgreen'
     exec 'hi def link cCustomClass Function'
 endfunction
-"autocmd BufReadPost * call Highlight()
+"autocmd BufReadPost * silent! call g:Highlight()
 autocmd BufReadPost * call timer_start(0, {-> g:HighlightRegex()})
