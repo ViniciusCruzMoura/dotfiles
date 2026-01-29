@@ -48,7 +48,16 @@ if $TERM =~ 'tmux'
     set ttymouse=xterm2
 endif
 
-command! Ctags silent! execute '!ctags -a -R --exclude=.git .' | redraw!
+command! Ctags silent! execute '!ctags -a -R ' .
+  \ '--exclude=.git ' .
+  \ '--exclude="*env/*" ' .
+  \ '--exclude="*.js" ' .
+  \ '--exclude="*.svg" ' .
+  \ '--exclude="*.css" ' .
+  \ '--exclude="*.json" ' .
+  \ '--exclude="*.md" ' .
+  \ '--exclude="*.html" .'
+  \ | redraw!
 
 command! GitBlame execute '!git blame --date short --color-by-age -L' .(line('.')-0). ',' .(line('.')+10). ' %'
 " :execute '!git blame --date short --color-by-age -L' .(line('.')-5). ',' .(line('.')+5). ' %'
