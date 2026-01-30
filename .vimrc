@@ -56,6 +56,9 @@ command! Ctags silent! execute '!ctags -a -R ' .
   \ '--exclude="*.css" ' .
   \ '--exclude="*.json" ' .
   \ '--exclude="*.md" ' .
+  \ '--exclude="*.properties" ' .
+  \ '--exclude="*.xml" ' .
+  \ '--exclude="*.1" ' .
   \ '--exclude="*.html" .'
   \ | redraw!
 
@@ -158,6 +161,9 @@ function! g:Highlight()
             let kind = item.kind
             if kind == 'f' || kind == 'c' || kind == 's' "|| kind == 'm'
                 let name = item.name
+                " TODO 202601291937 persist it on a global variable
+                " and when open and reopen the buffer, use the variable
+                " instead of use the taglist cause its a expensive function
                 exec 'syntax keyword Identifier ' . name
             endif
         catch
