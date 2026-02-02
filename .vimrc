@@ -150,27 +150,80 @@ au FileType netrw au BufLeave <buffer> :set mouse=inv
 " au FileType netrw nmap <buffer> <LeftMouse> <LeftMouse> <CR>
 
 " https://stackoverflow.com/questions/736701/class-function-names-highlighting-in-vim
-function! g:Highlight()
-    if exists("b:highlight_done") && b:highlight_done
-        return
+function! g:HighlightCtags()
+    if !exists('g:highlighted_identifiers')
+        let g:highlighted_identifiers = []
     endif
-    let b:highlight_done = 1
-    let list = taglist('.*')
-    for item in list
-        try
-            let kind = item.kind
-            if kind == 'f' || kind == 'c' || kind == 's' "|| kind == 'm'
+    if empty(g:highlighted_identifiers)
+        let list = taglist('.*')
+        for item in list
+            try
+                let kind = item.kind
+                if kind == 's' || kind == 'v' || kind == 'm' "kind == 'f' || kind == 'c' || kind == 's'
+                    let name = item.name
+                    call add(g:highlighted_identifiers, name)
+                    exec 'syntax keyword Identifier ' . name
+                endif
+            catch
+                echo "Error occurred while processing tag " . item.name . ' ' . item.kind
+            endtry
+        endfor
+    else
+        for name in g:highlighted_identifiers
+            exec 'syntax keyword Identifier ' . name
+        endfor
+    endif
+    " TODO 202602011246 use a different color and identifier to prevent
+    " my text editor from turning completely yellow
+    "exec 'highlight Identifier gui=bold guifg=yellowgreen'
+endfunction
+function! g:HighlightCtags()
+    if !exists('g:highlighted_identifiers')
+        let g:highlighted_identifiers = {}
+    endif
+
+    if empty(g:highlighted_identifiers)
+        let list = taglist('.*')
+        for item in list
+            try
+                let kind = item.kind
                 let name = item.name
-                " TODO 202601291937 persist it on a global variable
-                " and when open and reopen the buffer, use the variable
-                " instead of use the taglist cause its a expensive function
-                exec 'syntax keyword Identifier ' . name
-            endif
-        catch
-            echo "Erro ocorreu ao processar a tag " . item.name item.kind
-        endtry
-    endfor
-    exec 'highlight Identifier gui=bold guifg=yellowgreen'
+                if kind == 'f' || kind == 'c' || kind == 's' || kind == 'v' || kind == 'm' || kind == 'd' || kind == 't' || kind == 'e'
+                    if !has_key(g:highlighted_identifiers, kind)
+                        let g:highlighted_identifiers[kind] = []
+                    endif
+                    call add(g:highlighted_identifiers[kind], name)
+                endif
+            catch
+                echo "Error occurred while processing tag " . item.name . ' ' . item.kind
+            endtry
+        endfor
+    else
+        for kind in keys(g:highlighted_identifiers)
+            for name in g:highlighted_identifiers[kind]
+                exec 'syntax keyword ' . kind . 'Identifier ' . name
+            endfor
+        endfor
+    endif
+
+    exec 'highlight FunctionIdentifier gui=italic guifg=#9ACD32'
+    exec 'highlight ClassIdentifier gui=bold guifg=#ffaf5f'
+    exec 'highlight StructureIdentifier gui=underline guifg=#d75f87'
+    exec 'highlight TypedefIdentifier gui=underline guifg=#d75f87'
+    exec 'highlight VariableIdentifier gui=bold guifg=#87d787'
+    exec 'highlight EnumIdentifier gui=bold guifg=#87d787'
+    "exec 'highlight MacroIdentifier gui=italic guifg=#268BD2'
+    exec 'highlight MacroIdentifier gui=bold guifg=#87afaf'
+    exec 'highlight DefinitionIdentifier gui=bold guifg=#d75f5f'
+
+    exec 'syntax keyword FunctionIdentifier ' . join(g:highlighted_identifiers['f'], ' ')
+    exec 'syntax keyword ClassIdentifier ' . join(g:highlighted_identifiers['c'], ' ')
+    exec 'syntax keyword StructureIdentifier ' . join(g:highlighted_identifiers['s'], ' ')
+    exec 'syntax keyword TypedefIdentifier ' . join(g:highlighted_identifiers['t'], ' ')
+    exec 'syntax keyword VariableIdentifier ' . join(g:highlighted_identifiers['v'], ' ')
+    exec 'syntax keyword EnumIdentifier ' . join(g:highlighted_identifiers['e'], ' ')
+    exec 'syntax keyword MacroIdentifier ' . join(g:highlighted_identifiers['m'], ' ')
+    exec 'syntax keyword DefinitionIdentifier ' . join(g:highlighted_identifiers['d'], ' ')
 endfunction
 function! g:HighlightRegex()
     exec 'syn match    cCustomParen    "?=(" contains=cParen,cCppParen'
@@ -180,5 +233,5 @@ function! g:HighlightRegex()
     exec 'hi def cCustomFunc  gui=bold guifg=yellowgreen'
     exec 'hi def link cCustomClass Function'
 endfunction
-"autocmd BufReadPost * silent! call g:Highlight()
+autocmd BufReadPost * silent! call g:HighlightCtags()
 autocmd BufReadPost * call timer_start(0, {-> g:HighlightRegex()})
