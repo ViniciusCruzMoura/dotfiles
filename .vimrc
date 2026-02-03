@@ -46,6 +46,8 @@ set omnifunc=syntaxcomplete#Complete
 
 if $TERM =~ 'tmux'
     set ttymouse=xterm2
+elseif has_key(environ(), 'WT_SESSION')
+    set ttymouse=sgr
 endif
 
 command! Ctags silent! execute '!ctags -a -R ' .
