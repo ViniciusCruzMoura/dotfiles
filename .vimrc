@@ -61,6 +61,7 @@ command! Ctags silent! execute '!ctags -a -R ' .
   \ '--exclude="*.properties" ' .
   \ '--exclude="*.xml" ' .
   \ '--exclude="*.1" ' .
+  \ '--exclude="*.patch" ' .
   \ '--exclude="*.html" .'
   \ | redraw!
 
