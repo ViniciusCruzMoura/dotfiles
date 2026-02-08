@@ -103,6 +103,7 @@ do_config_vim_tmux() {
     curl -o ~/.vim/colors/base16-solarized-dark.vim --create-dirs https://raw.githubusercontent.com/chriskempson/base16-vim/master/colors/base16-solarized-dark.vim ;
     curl -o ~/.vim/colors/base16-spacemacs.vim --create-dirs https://raw.githubusercontent.com/chriskempson/base16-vim/master/colors/base16-spacemacs.vim ;
     curl -o ~/.vim/colors/base16-darktooth.vim --create-dirs https://raw.githubusercontent.com/chriskempson/base16-vim/master/colors/base16-darktooth.vim ;
+	curl -o ~/.vim/colors/habamax.vim --create-dirs https://raw.githubusercontent.com/habamax/vim-habamax/refs/heads/master/colors/habamax.vim ;
 }
 
 do_config_i3() {
