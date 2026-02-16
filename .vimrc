@@ -50,7 +50,7 @@ elseif has_key(environ(), 'WT_SESSION')
     set ttymouse=sgr
 endif
 
-command! Ctags silent! execute '!ctags -a -R ' .
+command! Ctags silent! execute '!rm -f tags; ctags -a -R ' .
   \ '--exclude=.git ' .
   \ '--exclude="*env/*" ' .
   \ '--exclude="*.js" ' .
@@ -62,6 +62,21 @@ command! Ctags silent! execute '!ctags -a -R ' .
   \ '--exclude="*.xml" ' .
   \ '--exclude="*.1" ' .
   \ '--exclude="*.patch" ' .
+  \ '--exclude="*Makefile" ' .
+  \ '--exclude="*.rc" ' .
+  \ '--exclude="*.txt" ' .
+  \ '--exclude="*.bat" ' .
+  \ '--exclude="*.sh" ' .
+  \ '--exclude="*.in" ' .
+  \ '--exclude="*.cmake" ' .
+  \ '--exclude="*.mak" ' .
+  \ '--exclude="*.vim" ' .
+  \ '--exclude="*.ksh" ' .
+  \ '--exclude="*.diff" ' .
+  \ '--exclude="*.nsi" ' .
+  \ '--exclude="*.cc" ' .
+  \ '--exclude="*.ac" ' .
+  \ '--exclude="*configure" ' .
   \ '--exclude="*.html" .'
   \ | redraw!
 
