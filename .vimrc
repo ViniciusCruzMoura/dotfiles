@@ -77,6 +77,10 @@ command! Ctags silent! execute '!rm -f tags; ctags -a -R ' .
   \ '--exclude="*.cc" ' .
   \ '--exclude="*.ac" ' .
   \ '--exclude="*configure" ' .
+  \ '--exclude="*.mk" ' .
+  \ '--exclude="*.s" ' .
+  \ '--exclude="*.ld" ' .
+  \ '--exclude="*.inc" ' .
   \ '--exclude="*.html" .'
   \ | redraw!
 
