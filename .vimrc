@@ -83,6 +83,9 @@ command! Ctags silent! execute '!rm -f tags; ctags -a -R ' .
   \ '--exclude="*.inc" ' .
   \ '--exclude="*.html" .'
   \ | redraw!
+  \ | source $MYVIMRC
+  \ | silent! call HighlightCtags()
+  \ | silent! call HighlightRegex()
 
 command! GitBlame execute '!git blame --date short --color-by-age -L' .(line('.')-0). ',' .(line('.')+10). ' %'
 " :execute '!git blame --date short --color-by-age -L' .(line('.')-5). ',' .(line('.')+5). ' %'
