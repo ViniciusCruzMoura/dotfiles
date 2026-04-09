@@ -34,6 +34,10 @@ set mouse=inv
 set splitright
 set splitbelow
 set belloff=all
+set foldmethod=indent
+set foldlevel=4
+set foldnestmax=5
+set complete=.,w,b,u,t "complete=.,w,b,u,t,i
 "set noswapfile
 "set nobackup
 "set nowb
