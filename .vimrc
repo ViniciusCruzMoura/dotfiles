@@ -57,6 +57,7 @@ endif
 command! Ctags silent! execute '!rm -f tags; ctags -a -R ' .
   \ '--exclude=.git ' .
   \ '--exclude="*env/*" ' .
+  \ '--exclude="*env*/*" ' .
   \ '--exclude="*.js" ' .
   \ '--exclude="*.svg" ' .
   \ '--exclude="*.css" ' .
