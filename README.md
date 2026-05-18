@@ -19,3 +19,11 @@ station wlan0 connect ''
 pacman-key --init
 pacman -Sy archlinux-keyring
 ```
+
+
+To install Vim and Ctags on Windows, download vim.zip and ctags.exe and put ctags in the Vim folder. Then configure the PATH environment variable.
+Links:
+```
+https://www.vim.org/download.php
+https://www.vim.org/scripts/script.php?script\_id=2288
+```
