@@ -96,6 +96,18 @@ command! GitBlame execute '!git blame --date short --color-by-age -L' .(line('.'
 " :execute '!git blame --date short --color-by-age -L' .(line('.')-5). ',' .(line('.')+5). ' %'
 " !git log --pretty=format: --name-only | sort | uniq -c | sort -rg | head -10
 
+" TODO 202605180858 if is windows use findstr, and config gui for windows
+" ex:
+" findstr /S /N /R /I /P /C:"_emitir_oj" *.c *.h *.cpp *.py *.java *.js
+" 
+" if has('win32') || has('win64')
+" else
+" endif
+" 
+" if has("gui_running")
+" else
+" endif
+
 " https://vim.fandom.com/wiki/Copy_and_paste_between_sessions_using_a_temporary_file
 " https://vim.fandom.com/wiki/Copy_and_paste_between_Vim_instances
 vmap <silent> ,y y:new<CR>:call setline(1,getregtype())<CR>o<Esc>P:wq! /tmp/reg.txt<CR>
